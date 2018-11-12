@@ -1,27 +1,65 @@
 package example.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="customer")
 public class Customer {
 	
-	private String first_name;
-	private String last_name;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
+	private int id;
+	
+	@Column(name="first_name")
+	private String firstName;
+	
+	@Column(name="last_name")
+	private String lastName;
+	
+	@Column(name="email")
 	private String email;
 	
 	public Customer(){
 		
 	}
 	
-	public String getFirst_name() {
-		return first_name;
+	public Customer(String firstName, String lastName, String email) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
 	}
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	
+	public int getId() {
+		return id;
 	}
-	public String getLast_name() {
-		return last_name;
+	
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+
+	public String getFirstName() {
+		return firstName;
 	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -31,7 +69,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [first_name=" + first_name + ", last_name=" + last_name + ", email=" + email + "]";
+		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
 
 }

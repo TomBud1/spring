@@ -35,7 +35,7 @@ public class JDBCExample {
 		try {
 
 			connection = DriverManager.getConnection(
-					"jdbc:postgresql://localhost:5432/postgres", "postgres",
+					"jdbc:postgresql://localhost:5432/test", "postgres",
 					"postgres");
 			System.out.println("connecting");
 
@@ -76,24 +76,25 @@ public class JDBCExample {
 		
 			while (rs.next()) {
 				
-				String first_name=rs.getString("first_name");
-				String last_name=rs.getString("last_name");
-				String email=rs.getString("email");
+				int id = rs.getInt("ID");
+				String firstName = rs.getString("first_name");
+				String lastName = rs.getString("last_name");
+				String email = rs.getString("email");
 				
 				Customer customer = new Customer();
-				customer.setFirst_name(first_name);
-				customer.setLast_name(last_name);
+				customer.setId(id);
+				customer.setFirstName(firstName);
+				customer.setLastName(lastName);
 				customer.setEmail(email);
 				
-				/*
-				System.out.println("first name: " + first_name);
-				System.out.println("last name: " + last_name);
+				System.out.println("ID: " + id);
+				System.out.println("first name: " + firstName);
+				System.out.println("last name: " + lastName);
 				System.out.println("email: " + email);
 				System.out.println("");
-				*/
 				
 				System.out.println(customer.toString());
-				
+				System.out.println("");
 			}
 			
 		} catch(SQLException e) {
