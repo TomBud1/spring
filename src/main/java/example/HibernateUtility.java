@@ -91,7 +91,47 @@ public class HibernateUtility {
 		System.out.println("Done!");				
 	}
 	
+	public void update(String column, String key) {
+		
+		session = factory.getCurrentSession();
+		
+		System.out.println("Update for customers");
+		
+		String query = new String();
+		query="update Student set " + column + "='" + key + "'";
+		
+		session.beginTransaction();
+		
+		session.createQuery(query).executeUpdate();
+				
+		
+	}
+	
+	public void update(String column, String key, String where, String value) {
+		
+		session = factory.getCurrentSession();
+		
+		System.out.println("Update for customers");
+		
+		String query = new String();
+		query ="update Customer set " + column + "='" + key + "' " + "where " + where + "='" + value + "'";
+		
+		session.beginTransaction();
+		
+		session.createQuery(query).executeUpdate();
+		
+		
+	}
+	
 	public void deleteById(int id) {
+		
+		Customer deleteCustomer = session.get(Customer.class, id);
+		session.delete(deleteCustomer);
+		
+		//query="delete from Customer where id=" + id;
+		//session.createQuery(query).executeUpdate();
+		
+		session.getTransaction().commit();
 		
 	}
 
