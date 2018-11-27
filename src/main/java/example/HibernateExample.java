@@ -24,20 +24,20 @@ public class HibernateExample {
 			
 			//hibernateUtility.update("last_name" , "Tom" , "last_name" , "Beck");
 			
-			List<Customer> theCustomers = hibernateUtility.getAll();
-			for(Customer tempCustomer : theCustomers) {
-				System.out.println(tempCustomer);
-			}
-			System.out.println("Done!");
-			
-			hibernateUtility.deleteById(2);
-			
-
-			theCustomers = hibernateUtility.getAll();
-			for(Customer tempCustomer : theCustomers) {
-				System.out.println(tempCustomer);
-			}
-			System.out.println("Done!");
+//			List<Customer> theCustomers = hibernateUtility.getAll();
+//			for(Customer tempCustomer : theCustomers) {
+//				System.out.println(tempCustomer);
+//			}
+//			System.out.println("Done!");
+//			
+//			hibernateUtility.deleteById(4);
+//			
+//
+//			theCustomers = hibernateUtility.getAll();
+//			for(Customer tempCustomer : theCustomers) {
+//				System.out.println(tempCustomer);
+//			}
+//			System.out.println("Done!");
 			
 			
 		}
