@@ -22,27 +22,45 @@ public class HibernateOneToOne {
 	
 	try {
 		
-		Instructor tempInstructor = new Instructor("John", "McCarthy" , "john@luv2code.com");
+		//Instructor tempInstructor = new Instructor("Chad", "Darby" , "chad@luv2code.com");
 		
-		InstructorDetail tempInstructorDetail = new InstructorDetail("http://www.luv2code.com/youtube","Luv 2 code !!!");
+		//InstructorDetail tempInstructorDetail = new InstructorDetail("http://www.luv2code.com/youtube","Luv to code !!!");
 		
-		tempInstructor.setInstructorDetail(tempInstructorDetail);
+		//tempInstructor.setInstructorDetail(tempInstructorDetail);
 		
-		session.beginTransaction();
+	
 		
 		// save the instructor
 		// this will ALSO save the instructor_detail object
 		// because of CascadeType.ALL
-		System.out.println("Saving instructor: " + tempInstructor);
+		//System.out.println("Saving instructor: " + tempInstructor);
 		
-		session.save(tempInstructor);
+		session.beginTransaction();
+		//session.save(tempInstructor);
+		
+		
+		int theId = 4;
+		InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, theId);
+		
+		System.out.println("tempInstructorDetail: " + tempInstructorDetail);
+		
+		System.out.println("the associated instructor: " + tempInstructorDetail.getInstructor());
+
+		//session.delete(tempInstructorDetail);
 		
 		session.getTransaction().commit();
+
 		
 		System.out.println("Done!");
 		
 	}
+	catch (Exception exc) {
+		exc.printStackTrace();
+	}
 	finally {
+		// handle connection leak issue
+		session.close();
+		
 		factory.close();
 	}
 	}
