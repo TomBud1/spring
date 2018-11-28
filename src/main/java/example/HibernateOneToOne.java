@@ -48,6 +48,10 @@ public class HibernateOneToOne {
 
 		//session.delete(tempInstructorDetail);
 		
+		//break bidirectional link - keep Instructor, delete InstructorDetail
+		//remove the associated object reference
+		//tempInstructorDetail.getInstructor().setInstructorDetail(null);
+		
 		session.getTransaction().commit();
 
 		
