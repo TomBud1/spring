@@ -1,8 +1,10 @@
 package example;
 
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import example.entity.Course;
 import example.entity.Customer;
@@ -64,9 +66,27 @@ public class HibernateOneToMany {
 		System.out.println("Courses: " + tempInstructor.getCourses());
 		
 		// commit transaction
-		session.getTransaction().commit();
+		//session.getTransaction().commit();
 		
 		System.out.println("Done!");
+		
+		//lazy fetching example
+		
+		theId = 4;
+		
+		Query<Instructor> query = session.createQuery("select i from Instructor i "
+													+ "JOIN FETCH i.courses "
+													+ "where i.id=:theInstructorId", Instructor.class);
+		
+		// set parameter on query
+		query.setParameter("theInstructorId", theId);
+		
+		// execute query and get instructor
+		Instructor tempInstructor2 = query.getSingleResult();
+		
+		System.out.println("luv2code: Instructor: " + tempInstructor2);
+		
+		session.getTransaction().commit();
 		
 	}
 	catch (Exception exc) {
